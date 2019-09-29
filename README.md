@@ -11,3 +11,13 @@
 p:host:username:password:context
 k:host:username:key-path:context
 ```
+## 主要功能
+```
+s|S): 搜索(serach)    
+r|R): 刷新(refresh)    
+d|D): 下一页(next page)     
+a|A): 上一页(previous page)     
+exit): 退出    
+```
+按照主机ID编号，进行操作   
+如图：
