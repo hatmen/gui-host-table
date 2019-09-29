@@ -73,6 +73,7 @@ function print_table {
         line=(${host_array[$key]})
         printf "$header" "[$key]" ${line[1]} ${line[2]} "${line[4]}"
     done
+    echo ""
 }
 
 function host_search {
@@ -86,7 +87,7 @@ function host_select {
     echo -n "Please select a serial number or option: "
     read option
     case ${option} in
-        [1-9])
+        [1-9]*)
             connection ${option}
             ;;
         D|d)
