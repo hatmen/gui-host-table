@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+# author: hatmen
 
 declare -A host_array
 host_file='./host-info.conf'
