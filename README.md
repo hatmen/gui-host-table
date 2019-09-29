@@ -6,7 +6,7 @@
 
 格式如下：  
 ```
-连接类型:主机地址:用户名:密码或证书路径:备注(不能用空格)
+连接类型:主机地址:用户名:密码或证书路径:备注(内容中不能有空格)
 
 p:host:username:password:context
 k:host:username:key-path:context
