@@ -68,13 +68,11 @@ function print_table {
     printf "===================================================\n"
 
     # print host tables
-    read -r -a host_entry <<< ${!host_array[@]}
+    read -r -a host_entry <<< `echo ${!host_array[@]}|tr ' ' '\n'|sort -n`
     for key in ${host_entry[@]:$p_start:$p_end}; do
         line=(${host_array[$key]})
         printf "$header" "[$key]" ${line[1]} ${line[2]} "${line[4]}"
     done
-
-    echo -e "\ns|S): serach \nr|R): refresh \nd|D): next page   a|A): previous page"
 }
 
 function host_search {
