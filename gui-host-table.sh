@@ -2,7 +2,8 @@
 # author: hatmen
 
 declare -A host_array
-host_file='./host-info.conf'
+folder=$(dirname $0)
+host_file="${folder}/host-info.conf"
 p_size=10
 p_start=0
 p_end=${p_size}
