@@ -6,6 +6,7 @@ host_file='./host-info.conf'
 p_size=10
 p_start=0
 p_end=${p_size}
+host_num=0
 
 function logger {
     case $1 in
@@ -30,7 +31,6 @@ function logger {
 function analysis_config {
     host_array=()
     message=$1
-    n=1
     # search message
     if [[ -n ${msg} ]]; then
         lines=`grep -Ev "^$|^[#;]" $host_file|grep "$message"`
@@ -43,7 +43,9 @@ function analysis_config {
         logger ERROR "No host list found!"
         exit -1
     else
+        n=0
         for i in $lines; do
+            let n=$n+1
             num=`echo $i|awk -F: 'END{print NF}'`
             # check split
             if [[ $num -ne 5 ]];then
@@ -55,8 +57,8 @@ function analysis_config {
             read -r -a array <<< "$i"
             host_array[$n]=${array[@]}
             IFS=${OIFS}
-            let n=$n+1
         done
+        host_num=$n
     fi
 }
 
