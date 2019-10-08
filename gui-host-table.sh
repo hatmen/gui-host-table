@@ -73,7 +73,7 @@ function print_table {
         line=(${host_array[$key]})
         printf "$header" "[$key]" ${line[1]} ${line[2]} "${line[4]}"
     done
-    echo ""
+    echo -e "\nTotal number of hosts: \033[32m[${host_num}]\033[0m\n"
 }
 
 function host_search {
