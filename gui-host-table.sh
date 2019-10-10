@@ -6,7 +6,6 @@ folder=$(dirname $0)
 host_file="${folder}/host-info.conf"
 p_size=10
 p_start=0
-p_end=${p_size}
 host_num=0
 
 function logger {
@@ -72,7 +71,7 @@ function print_table {
 
     # print host tables
     read -r -a host_entry <<< `echo ${!host_array[@]}|tr ' ' '\n'|sort -n`
-    for key in ${host_entry[@]:$p_start:$p_end}; do
+    for key in ${host_entry[@]:$p_start:$p_size}; do
         line=(${host_array[$key]})
         printf "$header" "[$key]" ${line[1]} ${line[2]} "${line[4]}"
     done
@@ -98,8 +97,7 @@ function host_select {
             if [[ $p_start -gt $num ]];then
                 logger info "No host list found!"
             else
-                p_start=$p_end
-                let p_end=$p_start+$p_size
+                let p_start+=$p_size
                 print_table
             fi
             ;;
@@ -107,9 +105,7 @@ function host_select {
             if [[ $p_start -eq 0 ]]; then
                 logger info "No host list found!"
             else
-                oend=$p_end
-                p_end=$p_start
-                let START=$oend-$p_size
+                let p_start-=$p_size
                 print_table
             fi
             ;;
@@ -118,7 +114,6 @@ function host_select {
             ;;
         R|r)
             p_start=0
-            p_end=$p_size
             analysis_config
             print_table
             ;;
